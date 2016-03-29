@@ -1,3 +1,8 @@
+<html>
+<head>
+	<title>Registro incluído</title>
+</head>
+<body>
 <?php 
 	$dsn = "mysql:host=localhost;dbname=cursodb";
 	$usuario = "root";
@@ -8,30 +13,49 @@
 	
 	try {
 		$con = new PDO($dsn, $usuario, $senha, $opcoes);
-		if(isset($_POST["nome"])){		
+		$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+		if(isset($_POST["nome"]) && !isset($_GET["voltar"])){		
 			$stmt = $con->prepare("INSERT INTO aluno(nome, matricula, idade) VALUES(:nome, :matricula, :idade)"); 
 			$stmt->bindValue(':nome',$_POST["nome"]); 
 			$stmt->bindValue(':matricula',$_POST["matricula"]);
 			$stmt->bindValue(':idade',$_POST["idade"]);  
-			$stmt->execute();
+			$success=$stmt->execute();
 		}
-		
-		echo '<h1><p color="blue">Aluno incluído com sucesso.</p></h1>';
-		echo '<br/>';
-		
-		$rs = $con->query("SELECT id_aluno, nome, matricula, idade FROM aluno");
-		echo '<table border="1">'; 
-		echo '<tr><th>ID</th><th>Nome</th><th>Matrícula</th><th>Idade</th></tr>';
-		while($row = $rs->fetch(PDO::FETCH_OBJ)){
-			echo '<tr>'; 
-			echo '<td>' . $row->id_aluno . '</td>'; 
-			echo '<td>' . $row->nome . '</td>'; 
-			echo '<td>' . $row->matricula . '</td>';
-			echo '<td>' . $row->idade . '</td>';
-			echo '</tr>'; 
+
+		if($success || isset($_GET["voltar"])){
+			$rs = $con->query("SELECT id_aluno, nome, matricula, idade FROM aluno");
+			echo '<table border="1">'; 
+			echo '<tr>'.
+		           '<th>ID</th>'.
+		           '<th>Nome</th>'.
+		           '<th>Matrícula</th>'.
+		           '<th>Idade</th>'.
+			       '<th>Ação</th>'.
+		         '</tr>';
+			while($row = $rs->fetch(PDO::FETCH_OBJ)){
+				echo '<tr>'; 
+				echo '<td>' . $row->id_aluno . '</td>'; 
+				echo '<td>' . $row->nome . '</td>'; 
+				echo '<td>' . $row->matricula . '</td>';
+				echo '<td>' . $row->idade . '</td>';
+				echo '<td><a href="removido.php?id=' . $row->id_aluno . '">Remover</a></td>';
+				echo '</tr>'; 
+			}
+			echo '</table>';
+		} else {
+			echo '<table border="1"/>';
+			echo '<tr>';
+			echo '<td align="center"><b>Erro na inclusão do usuário.</b></td>';
+			echo '</tr>';
+			echo '</table>';
 		}
-		echo '</table>';
 	} catch(PDOException $e){
-		echo 'Erro: ' .$e->getMessage();
+		echo '<table border="1"/>';
+		echo '<tr>';
+		echo '<th align="center"><b>Erro: ' . $e->getMessage(). '</b></th>';
+		echo '</tr>';
+		echo '</table>';
 	}
 ?>
+</body>
+</html>
