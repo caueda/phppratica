@@ -48,6 +48,22 @@
 					<td align="left"><input type="text" name="idade" name="idade"></td>
 				</tr>
 				<tr>
+					<td align="right">Departamento:</td>
+					<td align="left">
+						<select id="departamento" name="departamento">
+							<option value="-1">Selecione</option>
+							<?php 
+								include("bd.php");
+								$rs = $con->query("SELECT id_departamento, nome FROM departamento ORDER BY nome");							
+								while($row = $rs->fetch(PDO::FETCH_OBJ)){								 
+									echo '<option value="' . $row->id_departamento . '">' . $row->nome .'</option>';															
+								}							
+								$con = null;
+							?>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="Gravar" align="middle" onclick="javascript: return validar();"/>
 					</td>

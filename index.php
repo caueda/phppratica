@@ -5,13 +5,13 @@
 <body>
 <h2>Página Inicial</h2>
 <ul>
-	<li style="display:inline;"><a href="cadastro.html">Incluir</a></li>
+	<li style="display:inline;"><a href="cadastro.php">Incluir</a></li>
 	<li style="display:inline;"><a href="index.php">Refresh</a></li>		
 </ul>
 <br>
 <?php
 	include("bd.php");
-	$rs = $con->query("SELECT id_aluno, nome, matricula, idade FROM aluno");
+	$rs = $con->query("SELECT id_aluno, nome, matricula, idade, id_departamento FROM aluno");
 	echo '<table border="1">'; 
 	echo '<tr>'.
            '<th>ID</th>'.
@@ -28,7 +28,7 @@
 		echo '<td>' . $row->idade . '</td>';
 		echo '<td>';
 		echo '<a href="removido.php?id=' . $row->id_aluno . '">Remover</a>&nbsp;/&nbsp;';
-		echo '<a href="atualizar.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&matricula='.$row->matricula.'&idade='.$row->idade.'">Atualizar</a>&nbsp;';
+		echo '<a href="atualizar.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&matricula='.$row->matricula.'&idade='.$row->idade.'&departamento='.$row->id_departamento.'">Atualizar</a>&nbsp;';
 		echo '</td>';
 		echo '</tr>'; 
 	}
