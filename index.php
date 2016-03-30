@@ -1,7 +1,7 @@
 <html>
-<title>
-	<head>Lista de Alunos</head>
-</title>
+<head>
+	<title>Lista de Alunos</title>
+</head>
 <body>
 <h2>Página Inicial</h2>
 <ul>
