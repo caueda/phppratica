@@ -36,7 +36,7 @@
 				echo '<td>' . $row->idade . '</td>';
 				echo '<td>';
 				echo '<a href="removido.php?id=' . $row->id_aluno . '"><i class="icon-trash"></i>&nbsp;Remover</a>&nbsp;/&nbsp;';
-				echo '<a href="atualizar.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&matricula='.$row->matricula.'&idade='.$row->idade.'&departamento='.$row->id_departamento.'"><i class="icon-pencil"></i>&nbsp;Atualizar</a>&nbsp;';
+				echo '<a href="atualizar.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&matricula='.$row->matricula.'&idade='.$row->idade.'&departamento='.$row->id_departamento.'"><i class="icon-book"></i>&nbsp;Atualizar</a>&nbsp;';
 				echo '</td>';
 				echo '</tr>'; 
 			}
