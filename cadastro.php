@@ -36,12 +36,16 @@
 			$(document).ready(function(){
 				$("#gravar").click(function(){
 					return validar();
-				});				 
+				});			
+				$("#cancelar").click(function(){
+					window.location.href='index.php';
+				});		 
 			});
 		</script>
 	</head>
 	<body>
 	<div class="container">	
+		<h3>Cadastrar Aluno</h3>
 		<form class="form-inline" action="adicionado.php" method="post">
 			<div class="form-group">
 				<label for="nome" class="col-sm-2 control-label">Nome:</label>
@@ -81,6 +85,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 			    	<button id="gravar" type="submit" class="btn btn-primary">Gravar</button>
+			    	<button id="cancelar" name="cancelar" type="button" class="btn btn-primary">Cancelar</button>
 			   	</div>
 			</div>	
 		</form>

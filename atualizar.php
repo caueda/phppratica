@@ -34,8 +34,11 @@
 		$(document).ready(function(){
 			$("#atualizar").click(function(){
 				return validar();
+			});
+			$("#cancelar").click(function(){
+				window.location.href='index.php';
 			});				 
-		});
+		});		
 	</script>
 </head>
 <body>
@@ -72,6 +75,7 @@
 	}
 ?>
 	<div class="container">	
+		<h3>Atualizar Aluno</h3>
 		<form class="form-inline" action="atualizar.php" method="post">
 			<input type="hidden" name="idaluno" value='<?= $_GET["idaluno"] ?>'/>
 			
@@ -113,7 +117,8 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 			    	<button id="atualizar" name="atualizar" type="submit" class="btn btn-primary">Gravar</button>
-			   	</div>
+			    	<button id="cancelar" name="cancelar" type="button" class="btn btn-primary">Cancelar</button>
+			   	</div>			   	
 			</div>	
 		</form>
 	</div>		
