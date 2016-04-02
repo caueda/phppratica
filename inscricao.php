@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>InscriÃ§Ã£o</title>
+	<title>Inscrição</title>
 	<?php include("header.php")?>
 	<script>
 		function validar(){
