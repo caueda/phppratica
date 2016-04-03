@@ -1,5 +1,6 @@
 <html>
 <head>
+    <?php header('Content-Type: text/html; charset=iso-8859-1'); ?>
 	<title>Lista de Alunos</title>
 	<?php include("header.php")?>	
     <script>
@@ -7,13 +8,13 @@
 	    $('#menu').puimenubar();
     });
     function mensagem(){
-        alert('Este aluno j· est· inscrito em um curso.');
+        alert('Este aluno j√° est√° inscrito em um curso.');
     }
     </script>
 </head>
 <body>
 	<div class="container">
-		<h2>P·gina Inicial</h2>		
+		<h2>P√°gina Inicial</h2>		
 		<ul  id="menu">
 			<li><a href="cadastro.php"><i class="icon-plus"></i>Incluir</a></li>
 			<li><a href="index.php"><i class="icon-refresh"></i>Refresh</a></li>		
@@ -30,11 +31,11 @@
 			echo '<thead><tr>'.
 		           '<th>ID</th>'.
 		           '<th>Nome</th>'.
-		           '<th>MatrÌcula</th>'.
+		           '<th>Matr√≠cula</th>'.
 		           '<th>Idade</th>'.
                    '<th>Departamento</th>'.
                    '<th>Curso</th>'.
-			       '<th>AÁ„o</th>'.
+			       '<th>A√ß√£o</th>'.
 		         '</tr></thead>';
 			while($row = $rs->fetch(PDO::FETCH_OBJ)){
 				echo '<tr>'; 
