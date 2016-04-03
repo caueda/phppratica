@@ -111,7 +111,7 @@
 		?>
 		<h3>Cadastrar Aluno</h3>
 		<form class="form-inline" action="cadastro_curso.php" method="post">
-			<?php if($_GET["idcurso"]){ ?>
+			<?php if(isset($_GET["idcurso"])){ ?>
 			<input type="hidden" name="idcurso" id="idcurso" value='<?= $_GET["idcurso"] ?>'>
 			<?php } ?>
 			<div class="form-group">
