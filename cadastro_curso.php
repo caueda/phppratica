@@ -82,8 +82,8 @@
 			$success=$stmt->execute(array(
 					":curso"=>$curso,
 					":descricao"=>$descricao,
-					":iddepartamento"=>$idcurso,
-					":valor"=>$valor
+					":iddepartamento"=>$departamento,
+					":valor"=>str_replace(",", "", $valor),
 			));
 			$con = null;
 			if($success){
@@ -123,7 +123,7 @@
 			<div class="form-group">
 				<label for="descricao" class="col-sm-2 control-label">Descrição:</label>
 				<div class="col-sm-10">
-					<input type="text" id="descricao" class="form-control" name="descricao" value='<?= $descricao ?>'>
+					<textarea rows="3" cols="100" id="descricao" name="descricao"><?php echo $descricao ?></textarea>
 				</div>
 			</div>
 			<div class="form-group">
