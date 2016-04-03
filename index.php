@@ -8,7 +8,7 @@
 	    $('#menu').puimenubar();
     });
     function mensagem(){
-        alert('Este aluno j√° est√° inscrito em um curso.');
+        alert('Este aluno j· est· inscrito em um curso.');
     }
     </script>
 </head>
