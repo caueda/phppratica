@@ -42,11 +42,11 @@
 				));
 				
 				if($success){
-					header('Location: curso.php?mensagem='. urldecode('Curso removido com sucesso!'));
+					header('Location: curso.php?mensagem='. urlencode('Curso removido com sucesso!'));
 				}
 			}
 			
-			$rs = $con->query("SELECT c.id_curso, c.nome as curso, c.descricao, c.ano, d.id_departamento, d.nome as departamento
+			$rs = $con->query("SELECT c.id_curso, c.nome as curso, c.descricao, c.ano, c.valor, d.id_departamento, d.nome as departamento
 					 FROM curso c
 					 LEFT JOIN departamento d ON c.id_departamento = d.id_departamento
 					WHERE c.ativo = 1
@@ -57,6 +57,7 @@
 		           '<th>ID</th>'.
 		           '<th>Curso</th>'.  
 		           '<th>Ano</th>'.
+		           '<th>Valor</th>'.
                    '<th>Departamento</th>'.                   
 			       '<th>Ação</th>'.
 		         '</tr></thead>';
@@ -65,10 +66,11 @@
 				echo '<th scope="row">' . $row->id_curso . '</th>'; 
 				echo '<td>' . $row->curso . '</td>';
 				echo '<td>' . $row->ano . '</td>';
+				echo '<td>' . number_format($row->valor,2,'.',''). '</td>';
 				echo '<td>' . $row->departamento . '</td>';
 				echo '<td>';
 				echo '<a href="curso.php?remover_curso=1&idcurso=' . $row->id_curso . '"><i class="icon-trash"></i>&nbsp;Remover</a>&nbsp;/&nbsp;';				
-                echo '<a href="cadastro_curso.php?idcurso='.$row->id_curso . '&curso='. $row->curso.'&descricao='.$row->descricao.'&departamento='.$row->id_departamento.'&ano='.$row->ano.'"><i class="icon-edit"></i>&nbsp;Atualizar&nbsp;</a>&nbsp;';
+                echo '<a href="cadastro_curso.php?idcurso='.$row->id_curso . '&curso='. $row->curso.'&descricao='.$row->descricao.'&departamento='.$row->id_departamento.'&ano='.$row->ano.'&valor='.urlencode(number_format($row->valor,2,'.','')).'"><i class="icon-edit"></i>&nbsp;Atualizar&nbsp;</a>&nbsp;';
                 echo '</td>';
 				echo '</tr>'; 
 			}

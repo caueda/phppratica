@@ -5,6 +5,7 @@
 	echo '<link rel="stylesheet" href="style/jquery-css/jquery-ui.css" />';
 	echo '<script src="scripts/jquery-1.12.0.js"></script>';
 	echo '<script src="scripts/jquery-ui.js"></script>';
+	echo '<script src="scripts/jquery.maskMoney.min.js"></script>';
 	echo '<script src="scripts/primeui/primeui.js"></script>';		
 	echo '<!-- Bootstrap -->';
     echo '<link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';

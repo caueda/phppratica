@@ -29,6 +29,12 @@
 					campo.focus();
 					return false;
 				}
+				campo = document.getElementById("valor");
+				if(campo.value == ''){
+					alert('O valor é obrigatório.');	
+					campo.focus();
+					return false;
+				}
 				return true;
 			}
 		</script>
@@ -40,6 +46,7 @@
 				$("#cancelar").click(function(){
 					window.location.href='curso.php';
 				});		 
+				$('#valor').maskMoney();
 			});
 		</script>
 	</head>
@@ -52,29 +59,31 @@
 			$departamento=$_POST["departamento"];
 			$ano=$_POST["ano"];
 			$descricao=$_POST["descricao"];		
-			
-			$stmt = $con->prepare("UPDATE curso SET nome=:curso,descricao=:descricao,id_departamento=:departamento,ano=:ano WHERE id_curso=:idcurso");						
+			$valor=urldecode($_POST["valor"]);
+			$stmt = $con->prepare("UPDATE curso SET nome=:curso,descricao=:descricao,id_departamento=:departamento,ano=:ano,valor=:valor WHERE id_curso=:idcurso");						
 			$success=$stmt->execute(array(
 			    ":curso"=>$curso,
 				":descricao"=>$descricao,
 				":departamento"=>$departamento,
 				":ano"=>$ano,
+				":valor"=>str_replace(",", "", $valor),
 				":idcurso"=>$idcurso
 			));
 			$con = null;
 			if($success){
-				header('Location: curso.php?mensagem=' . urldecode('Curso atualizado com sucesso!'));
+				header('Location: curso.php?mensagem=' . urlencode('Curso atualizado com sucesso! '));
 			} 
 		} elseif (isset($_POST["incluir"])){
 			$curso=$_POST["curso"];
 			$departamento=$_POST["departamento"];
 			$descricao=$_POST["descricao"];
-				
-			$stmt = $con->prepare("INSERT INTO curso(nome,descricao,id_departamento) VALUES(:curso, :descricao, :iddepartamento)");
+			$valor=$_POST["valor"];	
+			$stmt = $con->prepare("INSERT INTO curso(nome,descricao,id_departamento,valor) VALUES(:curso, :descricao, :iddepartamento,:valor)");
 			$success=$stmt->execute(array(
 					":curso"=>$curso,
 					":descricao"=>$descricao,
-					":iddepartamento"=>$idcurso
+					":iddepartamento"=>$idcurso,
+					":valor"=>$valor
 			));
 			$con = null;
 			if($success){
@@ -98,6 +107,7 @@
 			$descricao=(isset($_GET["descricao"])?$_GET["descricao"]:'');
 			$ano=(isset($_GET["ano"])?$_GET["ano"]:'');
 			$departamento=(isset($_GET["departamento"])?$_GET["departamento"]:'');
+			$valor=(isset($_GET["valor"])?$_GET["valor"]:'0.0');
 		?>
 		<h3>Cadastrar Aluno</h3>
 		<form class="form-inline" action="cadastro_curso.php" method="post">
@@ -119,7 +129,13 @@
 			<div class="form-group">
 				<label for="ano" class="col-sm-2 control-label">Ano:</label>
 				<div class="col-sm-10">
-					<input type="text" id="an" oclass="form-control" name="a" value='<?= $ano ?>'>
+					<input type="text" id="ano" oclass="form-control" name="ano" value='<?= $ano ?>'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="valor" class="col-sm-2 control-label">Valor:</label>
+				<div class="col-sm-10">
+					<input type="text" id="valor" class="form-control" name="valor" value='<?= $valor ?>'>
 				</div>
 			</div>
 			<div class="form-group">

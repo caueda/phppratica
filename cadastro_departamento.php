@@ -61,7 +61,7 @@
 			));
 			$con = null;
 			if($success){
-				header('Location: departamento.php?mensagem=' . urldecode('Departamento incluído com sucesso!'));
+				header('Location: departamento.php?mensagem=' . urlencode('Departamento incluído com sucesso!'));
 			}
 		}
 	} catch(PDOException $e){
