@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>PÃ¡gina Inicial</h2>		
+		<h2>Página Inicial</h2>		
 		<ul  id="menu">
 			<li><a href="cadastro.php"><i class="icon-plus"></i>Incluir</a></li>
 			<li><a href="index.php"><i class="icon-refresh"></i>Refresh</a></li>		
@@ -35,7 +35,7 @@
 		           '<th>Idade</th>'.
                    '<th>Departamento</th>'.
                    '<th>Curso</th>'.
-			       '<th>AÃ§Ã£o</th>'.
+			       '<th>Ação</th>'.
 		         '</tr></thead>';
 			while($row = $rs->fetch(PDO::FETCH_OBJ)){
 				echo '<tr>'; 
