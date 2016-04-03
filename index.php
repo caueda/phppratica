@@ -31,7 +31,7 @@
 			echo '<thead><tr>'.
 		           '<th>ID</th>'.
 		           '<th>Nome</th>'.
-		           '<th>MatrÃ­cula</th>'.
+		           '<th>Matrícula</th>'.
 		           '<th>Idade</th>'.
                    '<th>Departamento</th>'.
                    '<th>Curso</th>'.

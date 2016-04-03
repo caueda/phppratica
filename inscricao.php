@@ -15,7 +15,7 @@
 			});				 
 		});		
         $(function() {
-            $( "#datacadastro" ).datepicker({ "dateFormat": "dd/mm/yyyy"});
+            $( "#datacadastro" ).datepicker({ "dateFormat": "dd/mm/yy"});
         });
 	</script>
 </head>
