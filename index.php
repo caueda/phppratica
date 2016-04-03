@@ -1,6 +1,5 @@
 <html>
 <head>
-    <?php header('Content-Type: text/html; charset=iso-8859-1'); ?>
 	<title>Lista de Alunos</title>
 	<?php include("header.php")?>	
     <script>
@@ -8,13 +7,13 @@
 	    $('#menu').puimenubar();
     });
     function mensagem(){
-        alert('Este aluno j√° est√° inscrito em um curso.');
+        alert('Este aluno j· est· inscrito em um curso.');
     }
     </script>
 </head>
 <body>
 	<div class="container">
-		<h2>P√°gina Inicial</h2>		
+		<h2>P·gina Inicial</h2>		
 		<ul  id="menu">
 			<li><a href="cadastro.php"><i class="icon-plus"></i>Incluir</a></li>
 			<li><a href="index.php"><i class="icon-refresh"></i>Refresh</a></li>		
@@ -22,17 +21,20 @@
 		<br>
 		<?php
 			include("bd.php");
-			$rs = $con->query("SELECT a.id_aluno, a.nome, a.matricula, a.idade, a.id_departamento, d.nome as nome_depto, c.nome as curso FROM aluno a LEFT JOIN departamento d ON a.id_departamento = d.id_departamento LEFT JOIN aluno_curso ac on ac.id_aluno = a.id_aluno LEFT JOIN curso c ON ac.id_curso = c.id_curso");
+			$rs = $con->query("SELECT a.id_aluno, a.nome, a.matricula, a.idade, a.id_departamento, d.nome as nome_depto, c.nome as curso 
+					FROM aluno a LEFT JOIN departamento d ON a.id_departamento = d.id_departamento 
+					LEFT JOIN aluno_curso ac on ac.id_aluno = a.id_aluno and ac.ativo = 1 
+					LEFT JOIN curso c ON ac.id_curso = c.id_curso");
 			echo '<div class="table-responsive">';
 			echo '<table class="table table-bordered table-hover table-condensed">'; 
 			echo '<thead><tr>'.
 		           '<th>ID</th>'.
 		           '<th>Nome</th>'.
-		           '<th>Matr√≠cula</th>'.
+		           '<th>MatrÌcula</th>'.
 		           '<th>Idade</th>'.
                    '<th>Departamento</th>'.
                    '<th>Curso</th>'.
-			       '<th>A√ß√£o</th>'.
+			       '<th>AÁ„o</th>'.
 		         '</tr></thead>';
 			while($row = $rs->fetch(PDO::FETCH_OBJ)){
 				echo '<tr>'; 

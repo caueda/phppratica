@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>InscriÃ§Ã£o</title>
+	<title>Inscrição</title>
 	<?php include("header.php")?>
 	<script>
 		function validar(){
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="matricula" class="col-sm-2 control-label">Data de cadastro:</label>
+				<label for="datacadastro" class="col-sm-2 control-label">Data de cadastro:</label>
 				<div class="col-sm-10">
 					<input id="datacadastro" type="text" name="datacadastro">
 				</div>

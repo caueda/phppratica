@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Inclusão de Aluno</title>
+	<meta http-equiv="Content-type" content="text/html; charset=uiso-8859-1" />
 	<?php include("header.php")?>
 	<script>
 		function validar(){
