@@ -92,6 +92,13 @@
 	?>
 	<body>
 	<div class="container">	
+		<?php 
+			$curso=(isset($_GET["curso"])?$_GET["curso"]:'');
+			$idcurso=(isset($_GET["idcurso"])?$_GET["idcurso"]:'');
+			$descricao=(isset($_GET["descricao"])?$_GET["descricao"]:'');
+			$ano=(isset($_GET["ano"])?$_GET["ano"]:'');
+			$departamento=(isset($_GET["departamento"])?$_GET["departamento"]:'');
+		?>
 		<h3>Cadastrar Aluno</h3>
 		<form class="form-inline" action="cadastro_curso.php" method="post">
 			<?php if($_GET["idcurso"]){ ?>
@@ -100,19 +107,19 @@
 			<div class="form-group">
 				<label for="curso" class="col-sm-2 control-label">Nome:</label>
 				<div class="col-sm-10">
-					<input type="text" id="curso" class="form-control" name="curso" value='<?= $_GET["curso"] ?>'>
+					<input type="text" id="curso" class="form-control" name="curso" value='<?= $curso ?>'>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="descricao" class="col-sm-2 control-label">Descrição:</label>
 				<div class="col-sm-10">
-					<input type="text" id="descricao" class="form-control" name="descricao" value='<?= $_GET["descricao"] ?>'>
+					<input type="text" id="descricao" class="form-control" name="descricao" value='<?= $descricao ?>'>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="ano" class="col-sm-2 control-label">Ano:</label>
 				<div class="col-sm-10">
-					<input type="text" id="an" oclass="form-control" name="a" vanolue='<?= $_GET["ano"] ?>'>
+					<input type="text" id="an" oclass="form-control" name="a" value='<?= $ano ?>'>
 				</div>
 			</div>
 			<div class="form-group">
@@ -148,7 +155,7 @@
 		</form>
 	</div>
 	<script>
-		var selectedDepartment = '<?=$_GET["departamento"]?>';
+		var selectedDepartment = '<?= $departamento ?>';
 		for(var i=0; i<document.forms[0].departamento.options.length; i++){
 			if(document.forms[0].departamento.options[i].value == selectedDepartment){
 				document.forms[0].departamento.options[i].selected = true;

@@ -75,21 +75,26 @@
 	?>
 	<body>
 	<div class="container">	
+		<?php 
+		$departamento=(isset($_GET["departamento"])?$_GET["departamento"]:'');
+		$nome=(isset($_GET["nome"])?$_GET["nome"]:'');
+		$descricao=(isset($_GET["descricao"])?$_GET["descricao"]:'');
+		?>
 		<h3>Cadastrar Departamento</h3>
 		<form class="form-inline" action="cadastro_departamento.php" method="post">
 			<?php if(isset($_GET["departamento"])) { ?>
-			<input type="hidden" name="departamento" id="departamento" value='<?= $_GET["departamento"] ?>'>
+			<input type="hidden" name="departamento" id="departamento" value='<?= $departamento ?>'>
 			<?php } ?>
 			<div class="form-group">
 				<label for="nome" class="col-sm-2 control-label">Nome:</label>
 				<div class="col-sm-10">
-					<input type="text" id="nome" class="form-control" name="nome" value='<?= $_GET["nome"] ?>'>
+					<input type="text" id="nome" class="form-control" name="nome" value='<?= $nome ?>'>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="descricao" class="col-sm-2 control-label">Descrição:</label>
 				<div class="col-sm-10">
-					<textarea name="descricao" id="descricao" rows="3" cols="80"><?php  echo $_GET["descricao"] ?></textarea>
+					<textarea name="descricao" id="descricao" rows="3" cols="80"><?php  echo $descricao ?></textarea>
 				</div>
 			</div>
 			<br>
