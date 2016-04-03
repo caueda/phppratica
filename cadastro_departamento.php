@@ -77,7 +77,9 @@
 	<div class="container">	
 		<h3>Cadastrar Departamento</h3>
 		<form class="form-inline" action="cadastro_departamento.php" method="post">
+			<?php if(isset($_GET["departamento"])) { ?>
 			<input type="hidden" name="departamento" id="departamento" value='<?= $_GET["departamento"] ?>'>
+			<?php } ?>
 			<div class="form-group">
 				<label for="nome" class="col-sm-2 control-label">Nome:</label>
 				<div class="col-sm-10">
