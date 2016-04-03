@@ -25,7 +25,8 @@
 			$rs = $con->query("SELECT a.id_aluno, a.nome, a.matricula, a.idade, a.id_departamento, d.nome as nome_depto, c.nome as curso 
 					FROM aluno a LEFT JOIN departamento d ON a.id_departamento = d.id_departamento 
 					LEFT JOIN aluno_curso ac on ac.id_aluno = a.id_aluno and ac.ativo = 1 
-					LEFT JOIN curso c ON ac.id_curso = c.id_curso");
+					LEFT JOIN curso c ON ac.id_curso = c.id_curso
+					ORDER BY a.id_aluno");
 			echo '<div class="table-responsive">';
 			echo '<table class="table table-bordered table-hover table-condensed">'; 
 			echo '<thead><tr>'.
@@ -47,7 +48,7 @@
                 echo '<td>' . $row->curso . '</td>';
 				echo '<td>';
 				echo '<a href="removido.php?id=' . $row->id_aluno . '"><i class="icon-trash"></i>&nbsp;Remover</a>&nbsp;/&nbsp;';				
-                echo '<a href="atualizar.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&matricula='.$row->matricula.'&idade='.$row->idade.'&departamento='.$row->id_departamento.'"><i class="icon-edit"></i>&nbsp;Atualizar&nbsp;/</a>&nbsp;';
+                echo '<a href="atualizar.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&matricula='.$row->matricula.'&idade='.$row->idade.'&departamento='.$row->id_departamento.'"><i class="icon-edit"></i>&nbsp;Atualizar&nbsp;</a>/&nbsp;';
                 if(is_null($row->curso)){
                     echo '<a href="inscricao.php?idaluno='.$row->id_aluno . '&nome='. $row->nome.'&iddepartamento='.$row->id_departamento.'"><i class="icon-edit"></i>&nbsp;Inscrever</a>&nbsp;';
 				} else {
