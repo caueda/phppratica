@@ -66,11 +66,11 @@
 				echo '<th scope="row">' . $row->id_curso . '</th>'; 
 				echo '<td>' . $row->curso . '</td>';
 				echo '<td>' . $row->ano . '</td>';
-				echo '<td>' . number_format($row->valor,2,'.',''). '</td>';
+				echo '<td>' . number_format($row->valor,2,'.',','). '</td>';
 				echo '<td>' . $row->departamento . '</td>';
 				echo '<td>';
 				echo '<a href="curso.php?remover_curso=1&idcurso=' . $row->id_curso . '"><i class="icon-trash"></i>&nbsp;Remover</a>&nbsp;/&nbsp;';				
-                echo '<a href="cadastro_curso.php?idcurso='.$row->id_curso . '&curso='. $row->curso.'&descricao='.$row->descricao.'&departamento='.$row->id_departamento.'&ano='.$row->ano.'&valor='.urlencode(number_format($row->valor,2,'.','')).'"><i class="icon-edit"></i>&nbsp;Atualizar&nbsp;</a>&nbsp;';
+                echo '<a href="cadastro_curso.php?idcurso='.$row->id_curso . '&curso='. $row->curso.'&descricao='.$row->descricao.'&departamento='.$row->id_departamento.'&ano='.$row->ano.'&valor='.urlencode(number_format($row->valor,2,'.',',')).'"><i class="icon-edit"></i>&nbsp;Atualizar&nbsp;</a>&nbsp;';
                 echo '</td>';
 				echo '</tr>'; 
 			}
