@@ -29,7 +29,7 @@
 	<div class="container">
 		<h2>Lista de alunos</h2>		
 		<ul  id="menu">
-			<li><a href="cadastro_curso.php?incluir=1"><i class="icon-plus"></i>Incluir</a></li>
+			<li><a href="cadastro.php"><i class="icon-plus"></i>Incluir</a></li>
 			<li><a href="curso.php"><i class="icon-book"></i>Curso</a></li>
 			<li><a href="departamento.php"><i class="icon-book"></i>Departamento</a></li>		
 			<li><a href="index.php"><i class="icon-home"></i>Refresh</a></li>
