@@ -6,6 +6,19 @@
     <script>
     $(document).ready(function(){
 	    $('#menu').puimenubar();
+	    $(function() {
+		    if($("#dialog p").html() != ''){
+	        	$( "#dialog" ).dialog({
+						        		   closeOnEscape: false,
+						        		   open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); },
+						        		   buttons: {
+						        		        Fechar: function() {
+						        		          $( this ).dialog( "close" );
+						        		        }
+						        		      }
+						        		});
+		    }
+	    });
     });
     function mensagem(){
         alert('Este aluno já está inscrito em um curso.');
@@ -14,10 +27,12 @@
 </head>
 <body>
 	<div class="container">
-		<h2>Página Inicial</h2>		
+		<h2>Lista de alunos</h2>		
 		<ul  id="menu">
-			<li><a href="cadastro.php"><i class="icon-plus"></i>Incluir</a></li>
-			<li><a href="index.php"><i class="icon-refresh"></i>Refresh</a></li>		
+			<li><a href="cadastro_curso.php?incluir=1"><i class="icon-plus"></i>Incluir</a></li>
+			<li><a href="curso.php"><i class="icon-book"></i>Curso</a></li>
+			<li><a href="departamento.php"><i class="icon-book"></i>Departamento</a></li>		
+			<li><a href="index.php"><i class="icon-home"></i>Refresh</a></li>
 		</ul>
 		<br>
 		<?php
@@ -78,6 +93,9 @@
 			echo '</div>';
 			$con = null;
 		?>	
+	</div>
+	<div id="dialog" title="Mensagem">
+  	<p><?php echo $_GET['mensagem'] ?></p>
 	</div>
 </body>
 </html>

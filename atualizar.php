@@ -63,7 +63,7 @@
 			));
 			$con = null;
 			if($success){
-				header('Location: index.php');
+				header('Location: index.php?mensagem=' . urldecode('Aluno atualizado com sucesso!'));
 			} 
 		}
 	} catch(PDOException $e){
