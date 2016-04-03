@@ -94,8 +94,6 @@
 			$con = null;
 		?>	
 	</div>
-	<div id="dialog" title="Mensagem">
-  	<p><?php echo $_GET['mensagem'] ?></p>
-	</div>
+	<?php include 'mensagem.php';?>
 </body>
 </html>
