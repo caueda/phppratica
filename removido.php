@@ -1,6 +1,14 @@
 <html>
 <head>
 	<title>Excluir registro</title>
+	<link rel="stylesheet" href="themes/default/style.min.css" />
+	<script src="scripts/jquery-1.12.0.js"></script>
+	<script src="scripts/jstree.js"></script>
+	<script src="scripts/jquery-ui.js"></script>	
+	<!-- Bootstrap -->
+    <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="style/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="style/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <?php 

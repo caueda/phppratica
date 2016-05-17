@@ -8,10 +8,15 @@
 	
 	try {
 		if(isset($_POST["nome"])){		
-			$stmt = $con->prepare("INSERT INTO aluno(nome, matricula, idade) VALUES(:nome, :matricula, :idade)"); 
+			$stmt = $con->prepare("INSERT INTO aluno(nome, matricula, idade, id_departamento) VALUES(:nome, :matricula, :idade, :iddepartamento)"); 
 			$stmt->bindValue(':nome',$_POST["nome"]); 
 			$stmt->bindValue(':matricula',$_POST["matricula"]);
 			$stmt->bindValue(':idade',$_POST["idade"]);  
+			if(!isset($_POST["departamento"]) || $_POST["departamento"]=='-1'){
+				$stmt->bindValue(':iddepartamento', null);
+			} else {
+				$stmt->bindValue(':iddepartamento',$_POST["departamento"]);
+			}
 			$success=$stmt->execute();
 			$con = null;
 		}
@@ -19,12 +24,7 @@
 			header('Location: index.php');
 		}
 	} catch(PDOException $e){
-		echo '<table border="1"/>';
-		echo '<tr>';		
-		echo '<th align="center"><b>Erro: ' . $e->getMessage(). '</b></th>';
-		echo '</tr>';
-		echo '</table>';		
-		echo '<br><a href="index.php>Início</a>"';
+		echo 'Erro: ' . $e->getMessage();
 	}
 ?>
 </body>

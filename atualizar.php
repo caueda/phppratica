@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Inclusão de Aluno</title>
+	<?php include("header.php")?>
 	<script>
 		function validar(){
 			var campo;
@@ -30,6 +31,11 @@
 			}
 			return true;
 		}
+		$(document).ready(function(){
+			$("#atualizar").click(function(){
+				return validar();
+			});				 
+		});
 	</script>
 </head>
 <body>
@@ -40,11 +46,16 @@
 			$nome=$_POST["nome"];
 			$idade=$_POST["idade"];
 			$idaluno=$_POST["idaluno"];		
-			$stmt = $con->prepare("UPDATE aluno SET nome=:nome, idade=:idade WHERE id_aluno =:idaluno");						
+			$iddepartamento=$_POST["departamento"];
+			if($iddepartamento == "-1"){
+				$iddepartamento = null;
+			}
+			$stmt = $con->prepare("UPDATE aluno SET nome=:nome, idade=:idade, id_departamento=:iddepartamento WHERE id_aluno =:idaluno");						
 			$success=$stmt->execute(array(
 			    ":idaluno"=>$idaluno,
 				":nome"=>$nome,
-				":idade"=>$idade
+				":idade"=>$idade,
+			    ":iddepartamento"=>$iddepartamento
 			));
 			$con = null;
 			if($success){
@@ -60,27 +71,60 @@
 		exit();
 	}
 ?>
-	<form action="atualizar.php" method="post">
-		<input type="hidden" name="idaluno" value='<?= $_GET["idaluno"] ?>'/>
-		<table width="500px" align="center">			
-			<tr>
-				<td align="right">Nome:</td>
-				<td align="left"><input id="nome" type="text" name="nome" value='<?= $_GET["nome"] ?>'></td>
-			</tr>
-			<tr>
-				<td align="right">Matrícula:</td>
-				<td align="left"><input type="text" id="matricula" name="matricula" value='<?= $_GET["matricula"]?>' readonly="readonly"></td>
-			</tr>
-			<tr>
-				<td align="right">Idade:</td>
-				<td align="left"><input type="text" name="idade" value='<?= $_GET["idade"]?>'></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" name="atualizar" value="Gravar" align="middle" onclick="javascript: return validar();"/>
-				</td>
-			</tr>
-		</table>
+	<div class="container">	
+		<form class="form-inline" action="atualizar.php" method="post">
+			<input type="hidden" name="idaluno" value='<?= $_GET["idaluno"] ?>'/>
+			
+			<div class="form-group">
+				<label for="nome" class="col-sm-2 control-label">Nome:</label>
+				<div class="col-sm-10">
+					<input type="text" id="nome" class="form-control" name="nome" value='<?= $_GET["nome"] ?>' >
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="matricula" class="col-sm-2 control-label">Matrícula:</label>
+				<div class="col-sm-10">
+					<input type="text" id="matricula" class="form-control" name="matricula" value='<?= $_GET["matricula"]?>' readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="idade" class="col-sm-2 control-label">Idade:</label>
+				<div class="col-sm-10">
+					<input type="text" id="idade" class="form-control" name="idade" value='<?= $_GET["idade"]?>'>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label for="departamento" class="col-sm-2 control-label">Departamento:</label>
+				<div class="col-sm-10">
+					<select id="departamento" name="departamento" class="form-control">
+						<option value="-1">Selecione</option>
+						<?php 
+							include("bd.php");
+							$rs = $con->query("SELECT id_departamento, nome FROM departamento ORDER BY nome");							
+							while($row = $rs->fetch(PDO::FETCH_OBJ)){								 
+								echo '<option value="' . $row->id_departamento . '">' . $row->nome .'</option>';															
+							}							
+							$con = null;
+						?>
+					</select>
+				</div>
+			</div>			
+			<br>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+			    	<button id="atualizar" name="atualizar" type="submit" class="btn btn-primary">Gravar</button>
+			   	</div>
+			</div>	
+		</form>
+	</div>		
 	</form>
+	<script>
+		var selectedDepartment = '<?=$_GET["departamento"]?>';
+		for(var i=0; i<document.forms[0].departamento.options.length; i++){
+			if(document.forms[0].departamento.options[i].value == selectedDepartment){
+				document.forms[0].departamento.options[i].selected = true;
+			}
+		}
+	</script>
 </body>
 </html>
